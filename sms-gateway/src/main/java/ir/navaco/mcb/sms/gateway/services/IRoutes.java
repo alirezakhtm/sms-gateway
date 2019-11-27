@@ -14,11 +14,18 @@ public class IRoutes extends RouteBuilder {
 
 
     public void configure() throws Exception {
-        restConfiguration("rest-api")
+//        restConfiguration("rest-api")
+        restConfiguration()
+//                .component("netty4-http")
                 .component("restlet")
-                .host("localhost")
+//                .component("spark-rest")
+//                .host("localhost")
                 .port(9696)
+//                .bindingMode(RestBindingMode.json)
                 .bindingMode(RestBindingMode.json);
+
+        rest("/test").get("/home").to("direct:test-home");
+        from("direct:test-home").transform().constant("Welcome");
 
         rest("/navaco-sms")
                 .post("/send-message").to("direct:check-validity");

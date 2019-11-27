@@ -10,7 +10,11 @@
         <redis>
             <queue-name>SMS.REQUEST</queue-name>
             <cluster>
-                <node>localhost</node>
+                <!-- DOCKER -->
+                <!--<node>localhost</node>-->
+                <node>173.15.0.2</node>
+                <node>173.15.0.3</node>
+                <node>173.15.0.4</node>
             </cluster>
         </redis>
     </queue>

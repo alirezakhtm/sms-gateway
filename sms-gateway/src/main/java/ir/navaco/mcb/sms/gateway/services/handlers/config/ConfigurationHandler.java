@@ -24,7 +24,9 @@ public class ConfigurationHandler {
 
     public ApplicationConfiguration getConfig() throws JAXBException {
 //        File configurationFile = this.getConfigurationFile();
-        File configurationFile = new File(this.getClass().getClassLoader().getResource("application.xml").getFile());
+        /*DOCKER*/
+//        File configurationFile = new File(this.getClass().getClassLoader().getResource("application.xml").getFile());
+        File configurationFile = new File("/root/application.xml");
         JAXBContext context = JAXBContext.newInstance(ApplicationConfiguration.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
         ApplicationConfiguration applicationConfiguration = (ApplicationConfiguration) unmarshaller.unmarshal(configurationFile);

@@ -7,7 +7,7 @@ import ir.navaco.mcb.sms.gateway.services.handlers.db.entity.SMSResponse;
 
 import java.util.UUID;
 
-public class ConverterObjectToEntity {
+public class ObjectConverter {
 
     public static SMSRequest convertToSMSRequest(IRestSMSRequest restSMSRequest){
         SMSRequest smsRequest = new SMSRequest(
@@ -37,5 +37,10 @@ public class ConverterObjectToEntity {
                 restSMSRequest.getMessageContent()
         );
         return smsResponse;
+    }
+
+    public static String convertToStandardJsonFormat(String jsonBody){
+        return jsonBody.replace("{", "{\"").replace("=", "\":\"")
+                .replace(", ", "\",\"").replace("}", "\"}");
     }
 }
