@@ -24,12 +24,15 @@ public class DBHandler {
     }
 
     public void insertSMSRequest(IRestSMSRequest smsRequest){
-        Session session = this.factory.openSession();
+        Session session = factory.openSession();
         SMSRequest request = ObjectConverter.convertToSMSRequest(smsRequest);
         Transaction transaction = session.beginTransaction();
         session.save(request);
         session.flush();
+        session.clear();
         transaction.commit();
+        session.close();
+
     }
 
     public void insertSMSResponse(IRestSMSResponse smsResponse){
@@ -38,7 +41,9 @@ public class DBHandler {
         Transaction transaction = session.beginTransaction();
         session.save(response);
         session.flush();
+        session.clear();
         transaction.commit();
+        session.close();
     }
 
     public void insertSMSResponse(SMSResponse smsResponse){
@@ -46,6 +51,8 @@ public class DBHandler {
         Transaction transaction = session.beginTransaction();
         session.save(smsResponse);
         session.flush();
+        session.clear();
         transaction.commit();
+        session.close();
     }
 }

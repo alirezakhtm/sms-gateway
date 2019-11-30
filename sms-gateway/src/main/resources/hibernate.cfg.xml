@@ -3,18 +3,17 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name = "hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name = "hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name = "hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</property>
+        <property name = "hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
         <!-- Assume test is the database name -->
-        <!-- DOCKER -->
-        <!--<property name = "hibernate.connection.url">jdbc:mysql://localhost:3306/dbsms</property>-->
-        <property name = "hibernate.connection.url">jdbc:mysql://173.15.0.5:3306/dbsms</property>
-        <property name = "hibernate.connection.username">root</property>
-        <!-- DOCKER -->
-        <!--<property name = "hibernate.connection.password"/>-->
-        <property name = "hibernate.connection.password">admin</property>
-        <property name="hibernate.connection.pool_size">10</property>
-        <property name="hibernate.id.new_generator_mappings">false</property>
+        <property name = "hibernate.connection.url">jdbc:oracle:thin:@//10.12.47.107:1521/DEVELOPR2PDB</property>
+        <property name = "hibernate.connection.username">SMS_GATEWAY</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hbm2ddl.auto">update</property>
+        <property name = "hibernate.connection.password">SMS_GATEWAY</property>
+        <property name="hibernate.connection.pool_size">100</property>
+        <property name="hibernate.id.new_generator_mappings">true</property>
         <!-- Mapping -->
         <mapping class="ir.navaco.mcb.sms.gateway.services.handlers.db.entity.SMSResponse"/>
         <mapping class="ir.navaco.mcb.sms.gateway.services.handlers.db.entity.SMSRequest"/>

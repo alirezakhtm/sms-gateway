@@ -1,27 +1,35 @@
 package ir.navaco.mcb.sms.gateway.services.handlers.db.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
-@Table(schema = "dbsms", name = "SMS_REQUEST", uniqueConstraints = {
+@Table(schema = "SMS_GATEWAY", name = "SMS_REQUEST", uniqueConstraints = {
         @UniqueConstraint(columnNames = "ID"),
         @UniqueConstraint(columnNames = "REQUEST_ID")
 })
-public class SMSRequest {
+public class SMSRequest implements Serializable {
+
+    public static final String SEQUENCE_NAME_GENERATOR = "SMS_REQUEST_SEQUENCE_NAME_GENERATOR";
+    public static final String SEQUENCE_NAME_MAIN = "SMS_REQUEST_SEQUENCE_NAME_MAIN";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", nullable = false, unique = true)
+    @SequenceGenerator(name = SEQUENCE_NAME_GENERATOR, sequenceName = SEQUENCE_NAME_MAIN,
+            initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQUENCE_NAME_GENERATOR)
+    @Column(name = "ID")
     private long id;
     @Column(name = "MSISDN", nullable = false)
     private String msisdn;
     @Column(name = "MESSAGE_CONTENT")
     private String messageContent;
-    @Column(name = "REQUEST_ID")
+    @Column(name = "REQUEST_ID", unique = true, nullable = false)
     private String requestId;
-    @Column(name = "REQUEST_DATE")
+    @Column(name = "REQUEST_DATE", nullable = false)
     private String requestDate;
 
     public SMSRequest(){
