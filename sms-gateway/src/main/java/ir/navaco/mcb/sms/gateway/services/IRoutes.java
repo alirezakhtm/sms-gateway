@@ -2,6 +2,7 @@ package ir.navaco.mcb.sms.gateway.services;
 
 import ir.navaco.mcb.sms.gateway.services.Processors.DBManager;
 import ir.navaco.mcb.sms.gateway.services.Processors.QueueManager;
+import ir.navaco.mcb.sms.gateway.services.Processors.RetrieveSMSStatus;
 import ir.navaco.mcb.sms.gateway.services.handlers.ErrorHandler;
 import ir.navaco.mcb.sms.gateway.services.predicates.RequestValidityPredicate;
 import org.apache.camel.Exchange;
@@ -14,22 +15,21 @@ public class IRoutes extends RouteBuilder {
 
 
     public void configure() throws Exception {
-//        restConfiguration("rest-api")
         restConfiguration()
-//                .component("netty4-http")
                 .component("restlet")
-//                .component("spark-rest")
-//                .host("localhost")
                 .port(9696)
-//                .bindingMode(RestBindingMode.json)
                 .bindingMode(RestBindingMode.json);
 
+        // test service
         rest("/test").get("/home").to("direct:test-home");
         from("direct:test-home").transform().constant("Welcome");
 
+        // All rest services
         rest("/navaco-sms")
-                .post("/send-message").to("direct:check-validity");
+                .post("/send-message").to("direct:check-validity")
+                .get("/status-message").to("direct:get-message-status");
 
+        // Routes of sending message
         from("direct:check-validity")
                 .choice()
                     .when(new RequestValidityPredicate()).to("direct:insert-to-queue")
@@ -50,6 +50,8 @@ public class IRoutes extends RouteBuilder {
 
         from("direct:response").transform().body();
 
+        // Routes of retrieve message status
+        from("direct:get-message-status").process(new RetrieveSMSStatus()).transform().body();
 
     }
 }

@@ -6,7 +6,7 @@ import java.util.Date;
 public class IRestSMSResponse {
     private long id;
     private String requestId;
-    private String accessId;
+    private String referenceId;
     private String msisdn;
     private String message;
     private String date;
@@ -15,9 +15,9 @@ public class IRestSMSResponse {
 
     }
 
-    public IRestSMSResponse(String requestId, String accessId, String msisdn, String message) {
+    public IRestSMSResponse(String requestId, String referenceId, String msisdn, String message) {
         this.requestId = requestId;
-        this.accessId = accessId;
+        this.referenceId = referenceId;
         this.msisdn = msisdn;
         this.message = message;
         this.date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date().getTime());
@@ -39,12 +39,12 @@ public class IRestSMSResponse {
         this.requestId = requestId;
     }
 
-    public String getAccessId() {
-        return accessId;
+    public String getReferenceId() {
+        return referenceId;
     }
 
-    public void setAccessId(String accessId) {
-        this.accessId = accessId;
+    public void setReferenceId(String referenceId) {
+        this.referenceId = referenceId;
     }
 
     public String getMsisdn() {

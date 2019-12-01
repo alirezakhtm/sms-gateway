@@ -22,7 +22,7 @@ public class ObjectConverter {
     public static SMSResponse convertToSMSResponse(IRestSMSResponse restSMSResponse) {
         SMSResponse smsResponse = new SMSResponse(
                 restSMSResponse.getRequestId(),
-                restSMSResponse.getAccessId(),
+                restSMSResponse.getReferenceId(),
                 restSMSResponse.getMsisdn(),
                 restSMSResponse.getMessage()
         );

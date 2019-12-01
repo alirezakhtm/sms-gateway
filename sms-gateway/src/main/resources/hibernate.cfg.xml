@@ -10,6 +10,7 @@
         <property name = "hibernate.connection.username">SMS_GATEWAY</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
+        <!-- DOCKER -->
         <property name="hbm2ddl.auto">update</property>
         <property name = "hibernate.connection.password">SMS_GATEWAY</property>
         <property name="hibernate.connection.pool_size">100</property>

@@ -9,7 +9,7 @@ import java.util.Date;
 @Table(schema = "SMS_GATEWAY", name = "SMS_RESPONSE", uniqueConstraints = {
         @UniqueConstraint(columnNames = "ID"),
         @UniqueConstraint(columnNames = "REQUEST_ID"),
-        @UniqueConstraint(columnNames = "ACCESS_ID")
+        @UniqueConstraint(columnNames = "REFERENCE_ID")
 })
 public class SMSResponse implements Serializable {
 
@@ -25,8 +25,8 @@ public class SMSResponse implements Serializable {
     private long id;
     @Column(name = "REQUEST_ID", nullable = false, unique = true)
     private String requestId;
-    @Column(name = "ACCESS_ID", nullable = false, unique = true)
-    private String accessId;
+    @Column(name = "REFERENCE_ID", nullable = false, unique = true)
+    private String referenceId;
     @Column(name = "MSISDN", nullable = false)
     private String msisdn;
     @Column(name = "MESSAGE_CONTENT")
@@ -40,9 +40,9 @@ public class SMSResponse implements Serializable {
 
     }
 
-    public SMSResponse(String requestId, String accessId, String msisdn, String message) {
+    public SMSResponse(String requestId, String referenceId, String msisdn, String message) {
         this.requestId = requestId;
-        this.accessId = accessId;
+        this.referenceId = referenceId;
         this.msisdn = msisdn;
         this.message = message;
         this.date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date().getTime());
@@ -65,12 +65,12 @@ public class SMSResponse implements Serializable {
         this.requestId = requestId;
     }
 
-    public String getAccessId() {
-        return accessId;
+    public String getReferenceId() {
+        return referenceId;
     }
 
-    public void setAccessId(String accessId) {
-        this.accessId = accessId;
+    public void setReferenceId(String accessId) {
+        this.referenceId = accessId;
     }
 
     public String getMsisdn() {

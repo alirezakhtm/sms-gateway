@@ -8,8 +8,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import java.io.File;
+import java.util.List;
 
 public class DBHandler {
     private static SessionFactory factory = null;
@@ -17,8 +19,8 @@ public class DBHandler {
     public DBHandler(){
         if(factory == null) {
             /*DOCKER*/
-//            File file = new File(getClass().getClassLoader().getResource("hibernate.cfg.xml").getFile());
-            File file = new File("/root/hibernate.cfg.xml");
+            File file = new File(getClass().getClassLoader().getResource("hibernate.cfg.xml").getFile());
+//            File file = new File("/root/hibernate.cfg.xml");
             factory = new Configuration().configure(file).buildSessionFactory();
         }
     }
@@ -54,5 +56,14 @@ public class DBHandler {
         session.clear();
         transaction.commit();
         session.close();
+    }
+
+    public SMSResponse getSMSResponse(String referenceId){
+        Session session = this.factory.openSession();
+        Query query = session.createQuery("FROM SMSResponse E WHERE E.referenceId = :referenceId");
+        query = query.setParameter("referenceId", referenceId);
+        List<SMSResponse> lstAns = query.list();
+        session.close();
+        return lstAns.size() == 0 || lstAns == null ? null : lstAns.get(0);
     }
 }
