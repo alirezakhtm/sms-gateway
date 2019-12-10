@@ -1,4 +1,4 @@
-package ir.navaco.mcb.sms.gateway.services.handlers.config.dto;
+package ir.navaco.mcb.sms.gateway.consumer.services.handlers.config.dto;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;

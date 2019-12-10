@@ -8,7 +8,7 @@
         <!-- Assume test is the database name -->
         <property name = "hibernate.connection.url">jdbc:oracle:thin:@//10.12.47.107:1521/DEVELOPR2PDB</property>
         <property name = "hibernate.connection.username">SMS_GATEWAY</property>
-        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
         <!-- DOCKER -->
         <property name="hbm2ddl.auto">update</property>
@@ -16,8 +16,8 @@
         <property name="hibernate.connection.pool_size">100</property>
         <property name="hibernate.id.new_generator_mappings">true</property>
         <!-- Mapping -->
-        <mapping class="ir.navaco.mcb.sms.gateway.services.handlers.db.entity.SMSResponse"/>
-        <mapping class="ir.navaco.mcb.sms.gateway.services.handlers.db.entity.SMSRequest"/>
-        <mapping class="ir.navaco.mcb.sms.gateway.services.handlers.db.entity.SMSPolicy"/>
+        <mapping class="ir.navaco.mcb.sms.gateway.consumer.services.handlers.db.entity.SMSResponse"/>
+        <mapping class="ir.navaco.mcb.sms.gateway.consumer.services.handlers.db.entity.SMSRequest"/>
+        <mapping class="ir.navaco.mcb.sms.gateway.consumer.services.handlers.db.entity.SMSPolicy"/>
     </session-factory>
 </hibernate-configuration>

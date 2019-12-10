@@ -11,6 +11,7 @@
     <modules>
         <module>sms-gateway</module>
         <module>sms-common</module>
+        <module>sms-gateway-consumer</module>
     </modules>
 
 

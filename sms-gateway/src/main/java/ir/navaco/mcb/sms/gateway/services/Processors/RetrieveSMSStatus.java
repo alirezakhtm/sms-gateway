@@ -1,7 +1,5 @@
 package ir.navaco.mcb.sms.gateway.services.Processors;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import ir.navaco.mcb.sms.gateway.services.handlers.ErrorHandler;
 import ir.navaco.mcb.sms.gateway.services.handlers.db.DBHandler;
 import ir.navaco.mcb.sms.gateway.services.handlers.db.entity.SMSResponse;
