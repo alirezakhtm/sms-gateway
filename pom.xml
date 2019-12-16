@@ -12,6 +12,10 @@
         <module>sms-gateway</module>
         <module>sms-common</module>
         <module>sms-gateway-consumer</module>
+        <module>sms-service-register</module>
+        <module>eureka-registry</module>
+        <!--<module>eureka-registry/examples/example-war</module>-->
+        <!--<module>eureka-registry/examples/spring-example</module>-->
     </modules>
 
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<application>
+    <eureka-server>http://10.12.47.14:8761</eureka-server>
+    <!--<eureka-server>http://localhost:8761</eureka-server>-->
+    <application-name>SMS-GATEWAY</application-name>
+
+    <sms-gateway-ip>10.12.47.105</sms-gateway-ip>
+    <sms-gateway-port>8080</sms-gateway-port>
+
+    <apis>
+        <api>
+            <name>send-sms-message</name>
+            <url>/navaco-sms/send-message</url>
+        </api>
+        <api>
+            <name>get-sms-status</name>
+            <url>/navaco-sms/status-message</url>
+        </api>
+    </apis>
+</application>

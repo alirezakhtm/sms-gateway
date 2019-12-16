@@ -5,7 +5,9 @@
             <queue-name>SMS.REQUEST</queue-name>
             <group-id>NAVACO.MCB</group-id>
             <cluster>
-                <node>10.12.47.42:9092</node>
+                <!-- DOCKER -->
+                <node>localhost:9092</node>
+                <!--<node>173.15.0.13:9092</node>-->
             </cluster>
         </kafka>
         <redis>

@@ -1,6 +1,7 @@
 package ir.navaco.mcb.sms.gateway.services.handlers;
 
 import ir.navaco.mcb.sms.common.IRestSMSRequest;
+import ir.navaco.mcb.sms.gateway.services.handlers.db.ObjectConverter;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
 
@@ -17,6 +18,7 @@ public class KafkaHandler extends QueueHandler{
         // TODO
         if(DEFAULT_KAFKA_SERVER == null) DEFAULT_KAFKA_SERVER = kafkaClusterList.get(0);
         boolean puttingResult = false;
+        jsonIRestSMSRequest = ObjectConverter.convertToStandardJsonFormat(jsonIRestSMSRequest);
         IRestSMSRequest smsRequest = gson.fromJson(jsonIRestSMSRequest, IRestSMSRequest.class);
         int counter = 0;
 

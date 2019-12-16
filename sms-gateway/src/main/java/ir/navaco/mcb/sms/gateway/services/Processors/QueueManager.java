@@ -24,6 +24,9 @@ public class QueueManager implements Processor {
         /*boolean kafkaInsertingResult = kafkaHandler.InsertRequestToQueue(jsonBody);
         if(!kafkaInsertingResult) redisHandler.InsertRequestToQueue(jsonBody);
         System.out.println(kafkaInsertingResult ? "Request putted into kafka Queue." : "Request putted into Redis.");*/
-        redisHandler.InsertRequestToQueue(jsonBody);
+
+        /*redisHandler.InsertRequestToQueue(jsonBody);*/
+
+        kafkaHandler.InsertRequestToQueue(jsonBody);
     }
 }
