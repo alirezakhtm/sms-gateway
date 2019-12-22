@@ -53,5 +53,14 @@ public class IRoutes extends RouteBuilder {
         // Routes of retrieve message status
         from("direct:get-message-status").process(new RetrieveSMSStatus()).transform().body();
 
+        // health and status request.
+        rest()
+                .get("/health").to("direct:health")
+                .get("/status").to("direct:status");
+        // health status for eureka registration
+        from("direct:health").transform().constant("OK");
+        // status service for eureka registration
+        from("direct:status").transform().constant("UP");
+
     }
 }

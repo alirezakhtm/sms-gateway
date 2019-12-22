@@ -1,0 +1,16 @@
+POST http://localhost:9696/navaco-sms/send-message
+Content-Type: application/json
+Accept: application/json
+
+{
+  "requestId":"test04-1a671498-7de2-447a-949e-1f20a1642151d2220-33",
+  "msisdn":"+989194018087",
+  "messageContent":"this is a message to test sending message service."
+}
+
+###
+
+
+GET http://localhost:9696/navaco-sms/status-message?referenceId=3ba27d2a-ef52-498e-bd2f-ab5420540d64
+
+###
