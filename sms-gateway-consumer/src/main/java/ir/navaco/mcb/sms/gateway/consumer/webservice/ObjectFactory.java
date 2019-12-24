@@ -38,6 +38,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ExtendReceiveSMS }
+     * 
+     */
+    public ExtendReceiveSMS createExtendReceiveSMS() {
+        return new ExtendReceiveSMS();
+    }
+
+    /**
      * Create an instance of {@link SendSMSResponse }
      * 
      */
@@ -51,14 +59,6 @@ public class ObjectFactory {
      */
     public ArrayOfString createArrayOfString() {
         return new ArrayOfString();
-    }
-
-    /**
-     * Create an instance of {@link ExtendReceiveSMS }
-     * 
-     */
-    public ExtendReceiveSMS createExtendReceiveSMS() {
-        return new ExtendReceiveSMS();
     }
 
     /**
@@ -126,14 +126,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SendSMSSingle }
-     * 
-     */
-    public SendSMSSingle createSendSMSSingle() {
-        return new SendSMSSingle();
-    }
-
-    /**
      * Create an instance of {@link ExtendReceiveSMSResponse }
      * 
      */
@@ -147,6 +139,14 @@ public class ObjectFactory {
      */
     public ArrayOfSTCSMSReceive3 createArrayOfSTCSMSReceive3() {
         return new ArrayOfSTCSMSReceive3();
+    }
+
+    /**
+     * Create an instance of {@link SendSMSSingle }
+     * 
+     */
+    public SendSMSSingle createSendSMSSingle() {
+        return new SendSMSSingle();
     }
 
     /**

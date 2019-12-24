@@ -18,8 +18,6 @@ public class KafkaConsumerTest {
 
 
     public static void main(String[] args) {
-        /*KafkaConsumerTest.MyConsumer consumer = new KafkaConsumerTest.MyConsumer();
-        consumer.runConsumer();*/
 
         ApplicationConfiguration applicationConfiguration = null;
         try {
@@ -33,56 +31,11 @@ public class KafkaConsumerTest {
         String topic = applicationConfiguration.getQueue().getKafka().getQueueName();
 
         new KafkaConsumerTest.MyConsumer(server, groupId, topic).run();
-
-
-
     }
 
-    /*private static class MyConsumer{
-
-        private ConfigurationHandler configurationHandler = new ConfigurationHandler();
-        private ApplicationConfiguration applicationConfiguration = null;
-
-        public MyConsumer() {
-            try {
-                applicationConfiguration = configurationHandler.getConfig();
-            } catch (JAXBException e) {
-                e.printStackTrace();
-            }
-        }
-
-        private Properties getProperties(){
-            Properties properties = new Properties();
-            properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                    applicationConfiguration.getQueue().getKafka().getNodes().get(0));
-            properties.put(ConsumerConfig.GROUP_ID_CONFIG, applicationConfiguration.getQueue().getKafka().getGroupId());
-            properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-            properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-            return properties;
-        }
-
-        private Consumer<String, String> getConsumer(){
-            Properties prop = this.getProperties();
-            Consumer<String, String> consumer = new KafkaConsumer<String, String>(prop);
-            consumer.subscribe(Collections.singletonList(applicationConfiguration.getQueue().getKafka().getQueueName()));
-            return consumer;
-        }
-
-        public void runConsumer(){
-            Consumer<String, String> consumer = this.getConsumer();
-            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
-            records.forEach(record -> {
-                String message = String.format("Consumer Record: (%s, %s, %d, %d)",
-                        record.key(), record.value(), record.partition(), record.offset());
-                System.out.println(message);
-            });
-        }
-
-    }*/
 
     private static class MyConsumer {
 
-        private final Logger mLogger = LoggerFactory.getLogger(Consumer.class.getName());
         private final String mBootstrapServer;
         private final String mGroupId;
         private final String mTopic;
@@ -94,7 +47,7 @@ public class KafkaConsumerTest {
         }
 
         public void run(){
-            System.out.println("Creating consumer thread.");
+            /*System.out.println("Creating consumer thread.");
 
             CountDownLatch countDownLatch = new CountDownLatch(1);
 
@@ -109,7 +62,7 @@ public class KafkaConsumerTest {
                 await(countDownLatch);
             }));
 
-            await(countDownLatch);
+            await(countDownLatch);*/
         }
 
         void await(CountDownLatch latch) {
@@ -122,7 +75,7 @@ public class KafkaConsumerTest {
             }
         }
 
-        private class ConsumerRunnable implements Runnable {
+        /*private class ConsumerRunnable implements Runnable {
 
             private CountDownLatch mLatch;
             private KafkaConsumer<String, String> mConsumer;
@@ -166,7 +119,7 @@ public class KafkaConsumerTest {
             public void shutdown(){
                 this.mConsumer.wakeup();
             }
-        }
+        }*/
     }
 
 

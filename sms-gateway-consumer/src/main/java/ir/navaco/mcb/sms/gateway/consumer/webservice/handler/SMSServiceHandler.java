@@ -1,39 +1,48 @@
 package ir.navaco.mcb.sms.gateway.consumer.webservice.handler;
 
-import ir.navaco.mcb.sms.gateway.consumer.services.handlers.PoliciesHandler;
-import ir.navaco.mcb.sms.gateway.consumer.services.handlers.db.DBHandler;
-import ir.navaco.mcb.sms.gateway.consumer.webservice.ArrayOfString;
-import ir.navaco.mcb.sms.gateway.consumer.webservice.MaskanSendService;
-import ir.navaco.mcb.sms.gateway.consumer.webservice.MaskanSendServiceSoap;
+import ir.navaco.mcb.sms.gateway.consumer.services.handlers.config.ConfigurationHandler;
+import ir.navaco.mcb.sms.gateway.consumer.services.handlers.config.dto.ApplicationConfiguration;
+import ir.navaco.mcb.sms.gateway.consumer.webservice.MaskanSMSService;
+import ir.navaco.mcb.sms.gateway.consumer.webservice.ObjectFactory;
 
+import javax.xml.bind.JAXBException;
 import java.util.List;
 
 public class SMSServiceHandler implements ServiceInterface {
 
+    private static ConfigurationHandler configurationHandler = null;
+    private ApplicationConfiguration applicationConfiguration = null;
+
+    public SMSServiceHandler(){
+
+        if(configurationHandler == null){
+            configurationHandler = new ConfigurationHandler();
+        }
+
+        try {
+            applicationConfiguration = configurationHandler.getConfig();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+            System.err.println("[>>>] Reading configuration file has been failed.\n" + e);
+        }
+    }
+
     @Override
-    public boolean sendMessage(String msisdn, String body, int priority) {
+    public boolean sendMessage(String msisdn, String body, String senderNumber, int priority) {
         // TODO
         System.out.println("[>>>] Sending Message ....");
-        ArrayOfString arrayOfString = new ArrayOfString();
-        MaskanSendService maskanSendService = new MaskanSendService();
-        try {
-            List<String> ans = maskanSendService.getMaskanSendServiceSoap().sendSMS(body,
-                    arrayOfString,
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    true,
-                    true,
-                    true).getString();
-            System.out.println("[>>>] Message successfully has been sent.");
-            return true;
-        }catch (Exception e){
-            System.err.println("[>>>] Sending message failed.");
-            System.err.println("[>>>] " + e.getMessage());
-            return false;
-        }
+        MaskanSMSService smsService = new MaskanSMSService();
+        smsService.getMaskanSMSServiceSoap().sendSMSSingle(
+                body,
+                msisdn,
+                senderNumber,
+                applicationConfiguration.getSmsUsername(),
+                applicationConfiguration.getSmsPassword(),
+                null,
+                null,
+                null
+        );
+        System.out.println("[>>>] Message successfully has been sent.");
+        return true;
     }
 }

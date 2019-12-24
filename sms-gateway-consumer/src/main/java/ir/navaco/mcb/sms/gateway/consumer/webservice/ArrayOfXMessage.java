@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class ArrayOfXMessage {
 
-    @XmlElement(name = "XMessage")
+    @XmlElement(name = "XMessage", nillable = true)
     protected List<XMessage> xMessage;
 
     /**

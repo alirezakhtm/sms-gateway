@@ -1,5 +1,8 @@
 <application>
     <interval>10000</interval>
+    <sms-username>portalsms</sms-username>
+    <sms-password>Portalsms@123</sms-password>
+    <sms-sender-number>1000</sms-sender-number>
     <queue>
         <kafka>
             <queue-name>SMS.REQUEST</queue-name>

@@ -7,6 +7,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ApplicationConfiguration {
     private Queue queue;
     private int interval;
+    private String smsUsername;
+    private String smsPassword;
+    private String smsSenderNumber;
 
     @XmlElement(name = "queue")
     public Queue getQueue() {
@@ -24,5 +27,32 @@ public class ApplicationConfiguration {
 
     public void setInterval(int interval) {
         this.interval = interval;
+    }
+
+    @XmlElement(name = "sms-username")
+    public String getSmsUsername() {
+        return smsUsername;
+    }
+
+    public void setSmsUsername(String smsUsername) {
+        this.smsUsername = smsUsername;
+    }
+
+    @XmlElement(name = "sms-password")
+    public String getSmsPassword() {
+        return smsPassword;
+    }
+
+    public void setSmsPassword(String smsPassword) {
+        this.smsPassword = smsPassword;
+    }
+
+    @XmlElement(name = "sms-sender-number")
+    public String getSmsSenderNumber() {
+        return smsSenderNumber;
+    }
+
+    public void setSmsSenderNumber(String smsSenderNumber) {
+        this.smsSenderNumber = smsSenderNumber;
     }
 }
